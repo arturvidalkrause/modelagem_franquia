@@ -1,4 +1,4 @@
-from instrument import Instrument
+from instrument import Instrument, Instruments
 from generate_id import generate_id
 
 class Loja:
@@ -68,8 +68,12 @@ class Loja:
 			price (float): preço do instrumento
 			number_of_string (int): numero de cordas do instrumento
 		"""
-		id = generate_id()
-		self.stock[id] = Instrument(id, name, mark, model, price, number_of_string)
+		try:
+			instrument_name = Instruments[name.upper()]  # Converte o nome para o enum
+		except KeyError:
+			raise ValueError(f"{name} is not a valid instrument name.")
+        
+		self.stock[id] = Instrument(id, instrument_name, mark, model, price, number_of_string)
 		print(f"Instrumento cadastrado:", id)
 
 	def find_instrument(self, id: hex) -> object:
