@@ -20,28 +20,84 @@ class Loja:
 		self.employee = {}
 		self.stock = {}
 
-	def add_employee(self, employee):
+	def add_employee(self, employee: object):
+		"""Adicina um novo funcionário
+
+		Args:
+			employee (object): Novo funcionário
+		"""
 		self.employee[employee.id] = employee
 		print(f"Funcionário contratado:", employee.id)
 
-	def remove_employee(self, employee_id):
+	def find_employee(self, id: hex) -> object:
+		"""Procura um funcionário cadastrado
+
+		Args:
+			id (hex): id do funcionário a ser procurado
+
+		Returns:
+			object: funcionario encontrado
+		"""
+		return self.employee[id]
+
+	def remove_employee(self, employee_id: hex):
+		"""Remove um funcionário
+
+		Args:
+			employee_id (hex): id do funcionario a ser demitido
+		"""
 		del self.employee[employee_id]
 		print(f"Funcionário demitido:", employee_id)
 
-	def update_location(self, new_location):
+	def update_location(self, new_location: object):
+		"""Atualiza a localização da loja caso seja transferiada para outra região
+
+		Args:
+			new_location (object): nova localização da loja
+		"""
 		self.location = new_location
 		print(f"Localização atualizada:", new_location)
 
-	def add_instrument(self, mark, model, price, number_of_string):
+	def add_instrument(self, name: str, mark: str, model: str, price: float, number_of_string: int):
+		"""Adiciona um novo instrumento
+
+		Args:
+			name (str): nome do instrumento
+			mark (str): marca do instrumento
+			model (str): modelo do instrumento
+			price (float): preço do instrumento
+			number_of_string (int): numero de cordas do instrumento
+		"""
 		id = generate_id()
-		self.stock[id] = Instrument(mark, model, price, number_of_string)
+		self.stock[id] = Instrument(id, name, mark, model, price, number_of_string)
 		print(f"Instrumento cadastrado:", id)
 
-	def remove_instrument(self, id_instrument):
+	def find_instrument(self, id: hex) -> object:
+		"""Procura um funcionário cadastrado
+
+		Args:
+			id (hex): id do funcionário a ser procurado
+
+		Returns:
+			object: intrumento encontrado
+		"""
+		return self.stock[id]
+
+	def remove_instrument(self, id_instrument: hex):
+		"""Remove um instrumento do estoque
+
+		Args:
+			id_instrument (hex): id do instrumento a ser removido
+		"""
 		del self.stock[id_instrument]
 		print(f"Instrumento vendido:", id_instrument)
 	
-	def update_nearest_store(self, new_nearest_store_id):
+	def update_nearest_store(self, new_nearest_store_id: hex):
+		"""Atualiza a loja loja mais proxima
+
+		Args:
+			new_nearest_store_id (hex): id da loja mais proxima
+		"""
 		self.nearest_store_id = new_nearest_store_id
 		print(f"Localização da loja mais próxima atualizada:", new_nearest_store_id)
 		
